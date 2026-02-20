@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>ProductivityHub Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-800">
+    <div class="lg:hidden flex items-center justify-between p-4 bg-white border-b">
+        <h1 class="text-[#2563eb] font-bold text-xl">ProductivityHub</h1>
+        <button class="text-gray-600 focus:outline-none">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </div>
+
+    <div class="flex">
+        <aside class="hidden lg:flex flex-col w-64 h-screen sticky top-0 bg-white border-r">
+            <div class="p-6">
+                <h1 class="text-[#2563eb] font-bold text-xl">ProductivityHub</h1>
+            </div>
+
+            <nav class="flex-1 px-4 space-y-2">
+                <a href="dashboard.html" class="flex items-center gap-3 bg-[#2563eb] text-white px-4 py-3 rounded-lg font-medium">
+                    <i class="fa-solid fa-table-columns"></i> Dashboard
+                </a>
+                <a href="dashboard.html"
+                    class="flex items-center gap-3 text-gray-500 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <i class="fa-solid fa-list-check"></i> Tasks
+                </a>
+                <a href="users.html"
+                    class="flex items-center gap-3 text-gray-500 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <i class="fa-solid fa-users"></i> Users
+                </a>
+                <a href="settings.html"
+                    class="flex items-center gap-3 text-gray-500 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+
+            <div class="p-4 border-t">
+                <div class="flex items-center gap-3 mb-4">
+                    <div
+                        class="w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold">
+                        A
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-bold truncate">Admin User</p>
+                        <p class="text-xs text-gray-400 truncate">admin@example.com</p>
+                    </div>
+                </div>
+                <button class="flex items-center gap-2 text-gray-500 hover:text-red-500 transition text-sm" id="logoutBtn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-4 lg:p-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <h2 class="text-2xl font-bold">Dashboard</h2>
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" placeholder="Search..."
+                        class="pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none w-full md:w-64" />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 flex justify-between items-start shadow-sm">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                            Total Tasks
+                        </p>
+                        <h3 class="text-3xl font-bold mt-1" id="totalTasks">6</h3>
+                    </div>
+                    <div class="p-3 bg-blue-50 text-blue-600 rounded-lg">
+                        <i class="fa-solid fa-chart-simple"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 flex justify-between items-start shadow-sm">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                            Completed
+                        </p>
+                        <h3 class="text-3xl font-bold mt-1" id="completedTasks">3</h3>
+                    </div>
+                    <div class="p-3 bg-green-50 text-green-600 rounded-lg">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 flex justify-between items-start shadow-sm">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                            Pending
+                        </p>
+                        <h3 class="text-3xl font-bold mt-1" id="pendingTasks">2</h3>
+                    </div>
+                    <div class="p-3 bg-amber-50 text-amber-600 rounded-lg">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 flex justify-between items-start shadow-sm">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                            Overdue
+                        </p>
+                        <h3 class="text-3xl font-bold mt-1" id="overdueTasks">1</h3>
+                    </div>
+                    <div class="p-3 bg-red-50 text-red-600 rounded-lg">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold">Tasks</h3>
+                <div class="flex gap-2">
+                    <select class="bg-white border border-gray-200 text-sm px-3 py-2 rounded-lg outline-none">
+                        <option>All Tasks</option>
+                        <option>Completed</option>
+                        <option>Pending</option>
+                        <option>Overdue</option>
+                    </select>
+                    <button id="addTaskBtn"
+                        class="bg-[#2563eb] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Add Task
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-4" id="taskContainer"></div>
+        </main>
+    </div>
+   
+    <!-- ================= MODAL ================= -->
+    <div id="taskModal" class="fixed inset-0 bg-black/40 hidden flex items-center justify-center z-50">
+    <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative">
+    
+    <!-- Close Button -->
+    <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+      ✕
+    </button>
+    
+    <h2 class="text-xl font-bold mb-4">New Task</h2>
+    
+    <form id="taskForm" class="space-y-4">
+      
+      <!-- Title -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Title</label>
+        <input 
+          id="taskTitle"
+          type="text"
+          placeholder="Enter task title"
+          class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+          required
+        />
+      </div>
+    
+      <!-- Description -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Description</label>
+        <textarea
+          id="taskDescription"
+          placeholder="Enter task description"
+          class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+        ></textarea>
+      </div>
+    
+      <!-- Status -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Status</label>
+        <select
+          id="taskStatus"
+          class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+        >
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+          <option value="overdue">Overdue</option>
+        </select>
+      </div>
+    
+      <!-- Buttons -->
+      <div class="flex justify-end gap-3 pt-2">
+        <button type="button" id="cancelBtn"
+          class="px-4 py-2 rounded-lg border text-gray-600 hover:bg-gray-100">
+          Cancel
+        </button>
+        <button type="submit"
+          class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+          Save
+        </button>
+      </div>
+    
+    </form>
+    </div>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
